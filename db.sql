@@ -1,3 +1,5 @@
+CREATE DATABASE db_shopping;
+
 CREATE TABLE category(
 	id INT PRIMARY KEY AUTO_INCREMENT,
     name varchar(225) NOT null,

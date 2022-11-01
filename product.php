@@ -81,7 +81,7 @@
                   ";
                 }
               } else {
-                echo "0 Data Returned";
+                echo "<p class='text-danger'>0 Data returned</p>";
               }
             ?>
             
