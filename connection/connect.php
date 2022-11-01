@@ -4,6 +4,5 @@
   $password = "";
   $db_name = "db_shopping";
 
-
   $conn = new mysqli($servername, $username, $password, $db_name);  
 ?>

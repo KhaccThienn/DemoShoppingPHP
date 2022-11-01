@@ -53,6 +53,7 @@
             <th>ID</th>
             <th>Name</th>
             <th>Status</th>
+            <th>Handling Action</th>
           </tr>
           </thead>
           <tbody>
@@ -64,6 +65,10 @@
                       <td scope='row'>$row[id]</td>
                       <td>$row[name]</td>
                       <td>$row[Status]</td>
+                      <td class='w-25'>
+                        <a href='Update/upCate.php?id=$row[id]' class='btn btn-success'>Update</a>
+                        <a href='Deleting/delCate.php?id=$row[id]' class='btn btn-danger'>Delete</a>
+                      </td>
                     </tr>
                   ";
                 }

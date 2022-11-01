@@ -1,5 +1,16 @@
 <?php 
   include "connection/connect.php";
+
+  if($conn -> connect_error){
+    die("Error connecting to database" .$conn->connect_error) ;
+  }
+
+  $sqlCate = "SELECT p.id, p.name, CASE WHEN p.status = 1 THEN 'In Stock' WHEN p.status = 0 THEN 'Out Of Stock' END AS Status, p.price, p.sale_price, ct.name as Category, p.image FROM products p INNER JOIN category ct ON p.category_id = ct.id ";
+  $products = $conn ->query($sqlCate);
+
+  $sql = "SELECT id, name, CASE WHEN status = 1 THEN 'In Stock' WHEN status = 0 THEN 'Out Of Stock' END AS 'Status' FROM category";
+  $categories = $conn -> query($sql);
+
 ?>
 
 <!doctype html>
@@ -38,6 +49,88 @@
         </div>
       </div>
       
+    </div>
+
+    <div class="main container p-5">
+      <div class="text-center">
+        <h2 class="text-success">
+          PHP CRUD in Shopping
+        </h2>
+        <p>
+          Click <a href="category.php">Category</a> to go to Category Page
+        </p>
+        <p>
+          Click <a href="product.php">Products</a> to go to Products Page
+        </p>
+      </div>
+      <div>
+        <p>All of Category Table</p>
+        <table class="table table-bordered">
+        <thead class="thead-inverse">
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Status</th>
+          </tr>
+          </thead>
+          <tbody>
+            <?php 
+              if($categories -> num_rows > 0){
+                while($row = $categories -> fetch_assoc()){
+                  echo "
+                    <tr>
+                      <td scope='row'>$row[id]</td>
+                      <td>$row[name]</td>
+                      <td>$row[Status]</td>
+                    </tr>
+                  ";
+                }
+              }
+            ?>
+            
+          </tbody>
+      </table>
+      </div>
+      <div class="">
+        <p>All of Products Table</p>
+        <table class="table table-bordered">
+        <thead class="thead-inverse">
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Status</th>
+            <th>Price</th>
+            <th>Sale Price</th>
+            <th>Category</th>
+            <th>Image</th>
+          </tr>
+        </thead>
+          <tbody>
+            <?php
+              if($products -> num_rows > 0){
+                while($row = $products -> fetch_assoc()){
+                  echo "
+                    <tr>
+                      <th scope='row'>$row[id]</th>
+                      <td>$row[name]</td>
+                      <td>$row[Status]</td>
+                      <td>$row[price]</td>
+                      <td>$row[sale_price]</td>
+                      <td>$row[Category]</td>
+                      <td class='w-25'>
+                        <img src='$row[image]' class='card-img' >
+                      </td>
+                    </tr>
+                  ";
+                }
+              } else {
+                echo "0 Data Returned";
+              }
+            ?>
+            
+          </tbody>
+      </table>
+      </div>
     </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

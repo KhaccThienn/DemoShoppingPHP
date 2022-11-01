@@ -65,7 +65,7 @@
                   echo "
                     <tr>
                       <th scope='row'>$row[id]</th>
-                      <td>$row[name]</td>
+                      <td> <a href='details.php?id=$row[id]'> $row[name] </a></td>
                       <td>$row[Status]</td>
                       <td>$row[price]</td>
                       <td>$row[sale_price]</td>
@@ -74,8 +74,8 @@
                         <img src='$row[image]' class='card-img' >
                       </td>
                       <td>
-                        <a href='' class='btn btn-success'>Update</a>
-                        <a href='' class='btn btn-danger'>Delete</a>
+                        <a href='Update/upPro.php?id=$row[id]' class='btn btn-success'>Update</a>
+                        <a href='Deleting/delPro.php?id=$row[id]' class='btn btn-danger'>Delete</a>
                       </td>
                     </tr>
                   ";
